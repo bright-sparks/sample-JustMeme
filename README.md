@@ -42,8 +42,8 @@ $ tns run ios --emulator
 
 ### Linting
 
-JustMeme also uses Gulp to automate JSHint for code linting. To run JSHint against the source files just run `gulp jshint` within the `src` directory:
+JustMeme also uses Gulp to automate both [JSHint](http://jshint.com/) and [JSCS](http://jscs.info/) for code linting. To run both against the source files just run `gulp lint` within the `src` directory:
 
 ```
-$ gulp jshint
+$ gulp lint
 ```

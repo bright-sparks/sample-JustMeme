@@ -3,7 +3,6 @@ var enumsModule = require("ui/enums");
 var analyticsMonitor = require("../analytics");
 
 module.exports = {
-	
 	addTemplate: function (fileName, imageSource) {
 		//This should also save locally....
 		return _addTemplate(fileName, imageSource );
@@ -35,12 +34,12 @@ function _addTemplate (fileName, imageSource) {
 		}).catch(function(error){
 			analyticsMonitor.trackException(error, "Everlive.UploadFile");
 			console.log("***** Add Tempalte ERROR", error);
-		}); 
+		});
 }
 
 function _uploadFile (fileName, imageSource) {
 	var postUrl = global.everliveBaseAddress + "/Files";
-	
+
 	var postBody = {
 		"Filename": fileName,
 		"ContentType": "image/png",

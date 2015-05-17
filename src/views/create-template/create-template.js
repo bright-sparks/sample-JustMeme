@@ -9,8 +9,8 @@ var analyticsMonitor = require("../../shared/analytics");
 var observableModule = require("data/observable");
 var _viewData = new observableModule.Observable();
 
-var _page,
-	_uniqueImageNameForSession;
+var _page;
+var _uniqueImageNameForSession;
 
 exports.loaded = function(args) {
 	_page = args.object;

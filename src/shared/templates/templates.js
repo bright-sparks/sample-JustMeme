@@ -39,14 +39,14 @@ function _getMyMemes(callback) {
 
 		entities.forEach(function (entity) {
 			var source = imageSource.fromFile(entity.path);
-			recentMemes.push({ source: source, fileName: entity.name, lastModified: entity.lastModified});
+			recentMemes.push({ source: source, fileName: entity.name, lastModified: entity.lastModified });
 		});
 
 		//sort to get in the order of most recent
 		recentMemes.sort(function (a, b) {
 			return b.lastModified.getTime() - a.lastModified.getTime();
 		});
-		
+
 		recentMemes.forEach(function(meme) {
 			callback(meme.source, meme.fileName);
 		});
@@ -67,7 +67,7 @@ function _getTemplates(callback) {
 	.then(function(entities){
 		analyticsMonitor.trackFeature("Templates.getMyTemplates");
 		analyticsMonitor.trackFeatureValue("Templates.getMyTemplates", entities.length);
-		
+
 		//Load the app templates
 		entities.forEach(function (template) {
 			callback(imageSource.fromFile(template.path));
@@ -85,7 +85,7 @@ function _getTemplatesFromEverlive(callback) {
 
 			var results = JSON.parse(result.content);
 			console.log("***** Everlive Templates Found:", results.length);
-			
+
 			results.forEach(function(template) {
 				//Before we download, check to see if we already have it...
 				if (!localStorage.doesEverliveTemplateExist(template.FileName)) {
@@ -95,7 +95,7 @@ function _getTemplatesFromEverlive(callback) {
 					httpModule.getImage(template.Url).then(function(imageSource) {
 						analyticsMonitor.trackFeatureStop("Templates.GetTemplateFromEverlive");
 						console.log("**** Got " + template.Url + " ****");
-						
+
 						var saved = localStorage.saveEverliveTemplateLocally(template.FileName, imageSource);
 						if (saved) {
 							callback(imageSource);
@@ -105,54 +105,9 @@ function _getTemplatesFromEverlive(callback) {
 					var templateImage = localStorage.getEverliveTemplateFile(template.FileName);
 					callback(templateImage);
 				}
-			});	
+			});
 		}).catch(function(error){
 			analyticsMonitor.trackException(error, "Get Templates From Everlive Failed");
 			console.log("***** ERROR", JSON.stringify(error));
 		});
 }
-
-/*
-function _getTemplatesFromEverlive(callback) {
-	var templatesFound = 0;
-
-	return new Promise(function (resolve, reject) {
-		everlive.getTemplateIndex()
-		.then(function(result) {
-			var results = JSON.parse(result.content);
-
-			var imagePromises = [];
-			results.Result.forEach(function(template) {
-				imagePromises.push(new Promise(function(resolve, reject) {
-					//Before we download, check to see if we already have it...
-					if (!localStorage.doesEverliveTemplateExist(template.FileName)) {
-						console.log("**** Getting " + template.Url + " ****");
-						httpModule.getImage(template.Url).then(function(imageSource) {
-							templatesFound++;
-							console.log("**** Got " + template.Url + " ****");
-							var saved = localStorage.saveEverliveTemplateLocally(template.FileName, imageSource);
-							
-							if (saved) {
-								callback(imageSource);
-							}
-							
-							resolve();
-						});
-					} else {
-						resolve();
-					}
-				}));
-			});
-
-			Promise.all(imagePromises).then(function() {
-				resolve(templatesFound);
-			});
-
-		}).catch(function(error){
-			console.log("***** ERROR", JSON.stringify(error));
-			reject(error);
-		});
-	});	
-}
-
-*/

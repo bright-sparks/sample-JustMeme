@@ -1,4 +1,3 @@
-
 var fs = require("file-system");
 var imageSourceModule = require("image-source");
 var enumsModule = require("ui/enums");
@@ -52,7 +51,7 @@ function _getMyMemes() {
 function _getAppTemplates() {
 	var fullPath = fs.path.join(fs.knownFolders.currentApp().path, _appTemplateFolder);
 	var templatesFolder = fs.Folder.fromPath(fullPath);
-	
+
 	return templatesFolder.getEntities();
 }
 
@@ -65,7 +64,6 @@ function _getEverliveTemplates () {
 }
 
 function _getEverliveTemplateFile(fileName) {
-	
 	var fullPath = fs.path.join(_everliveTemplateFolder.path, fileName);
 	var templateImage = imageSourceModule.fromFile(fullPath);
 
@@ -106,7 +104,7 @@ function _saveTemplateLocally(imageName, imageSource) {
 function _saveEverliveTemplateLocally(imageName, imageSource) {
 	var fullPath = fs.path.join(_everliveTemplateFolder.path, imageName);
 	console.log("***** Saved template to:", fullPath);
-	
+
 	var saved = imageSource.saveToFile(fullPath, enumsModule.ImageFormat.png);
 	return saved;
 }

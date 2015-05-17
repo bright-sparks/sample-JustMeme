@@ -2,7 +2,6 @@ var appSettingsModule = require("application-settings");
 var observableModule = require("data/observable");
 var navigation = require( "../../shared/navigation");
 
-
 var _viewData = new observableModule.Observable();
 var _page;
 var _delay = 100;
