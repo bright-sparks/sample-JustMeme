@@ -91,7 +91,7 @@ function populateMyMemes() {
 	});
 }
 
-function myMemesActionSheet (imageSource, imageFileName) {
+function myMemesActionSheet(imageSource, imageFileName) {
 	var options = {
 		title: "My Memes",
 		message: "What Do You Want To Do?",
@@ -171,7 +171,7 @@ function clearOldMemes(container) {
 }
 
 function templateSelected(selectedImageSource) {
-	if ( selectedImageSource ) {
+	if (selectedImageSource) {
 		analyticsMonitor.trackFeature("Home.TemplateSelected");
 		navigation.goCreateMeme(selectedImageSource);
 	}

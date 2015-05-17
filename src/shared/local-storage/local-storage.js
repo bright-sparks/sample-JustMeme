@@ -9,25 +9,25 @@ var _localTemplateFolder = _documentsFolder.getFolder(global.localTemplateFolder
 var _everliveTemplateFolder = _documentsFolder.getFolder(global.everliveTemplateFolderName);
 
 module.exports = {
-	getMyMemes: function () {
+	getMyMemes: function() {
 		return _getMyMemes();
 	},
-	getAppTemplates: function () {
+	getAppTemplates: function() {
 		return _getAppTemplates();
 	},
-	getMyTemplates: function () {
+	getMyTemplates: function() {
 		return _getMyTemplates();
 	},
-	getEverliveTemplates: function () {
+	getEverliveTemplates: function() {
 		return _getEverliveTemplates();
 	},
-	getEverliveTemplateFile: function (fileName) {
+	getEverliveTemplateFile: function(fileName) {
 		return _getEverliveTemplateFile(fileName);
 	},
 	deleteMeme: function (imageFileName) {
 		return _deleteMeme(imageFileName);
 	},
-	deleteAllMemes: function () {
+	deleteAllMemes: function() {
 		return _clearMemeFolder();
 	},
 	saveLocally: function(imageName, imageSource) {
@@ -59,7 +59,7 @@ function _getMyTemplates() {
 	return _localTemplateFolder.getEntities();
 }
 
-function _getEverliveTemplates () {
+function _getEverliveTemplates() {
 	return _everliveTemplateFolder.getEntities();
 }
 
@@ -75,11 +75,11 @@ function _deleteMeme(imageFileName) {
 	return file.remove();
 }
 
-function _clearMemeFolder () {
+function _clearMemeFolder() {
 	return _recentMemeFolder.clear();
 }
 
-function _saveImageLocally (imageName, imageSource) {
+function _saveImageLocally(imageName, imageSource) {
 	var fullPath = fs.path.join(_recentMemeFolder.path, imageName);
 	var saved = imageSource.saveToFile(fullPath, enumsModule.ImageFormat.png);
 

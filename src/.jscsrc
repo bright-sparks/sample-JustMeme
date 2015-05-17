@@ -6,6 +6,9 @@
 	"disallowNamedUnassignedFunctions": true,
 	"disallowNewlineBeforeBlockStatements": true,
 	"disallowSpacesInCallExpression": true,
+	"disallowSpacesInFunctionDeclaration": {
+		"beforeOpeningRoundBrace": true
+	},
 	"disallowTrailingWhitespace": true,
 	"esnext": true,
 	"requireCommaBeforeLineBreak": true,
