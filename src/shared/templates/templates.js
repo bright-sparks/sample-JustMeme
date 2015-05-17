@@ -84,8 +84,8 @@ function _getTemplates(callback) {
 }
 
 function _getTemplatesFromEverlive(callback) {
-
-	everlive.getTemplateIndex()
+	everlive
+		.getTemplateIndex()
 		.then(function(result) {
 			//console.log("***** Everlive GetTemplates Payload:", JSON.stringify(result));
 
