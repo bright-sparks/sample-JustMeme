@@ -1,6 +1,7 @@
 {
 	"boss": true,
 	"curly": true,
+	"esnext": true,
 	"eqeqeq": true,
 	"eqnull": true,
 	"expr": true,

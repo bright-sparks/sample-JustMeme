@@ -6,15 +6,14 @@ var utilities = require("../../shared/utilities");
 var analyticsMonitor = require("../../shared/analytics");
 
 var socialShare = require("../../node_modules/nativescript-social-share/social-share");
-
-
 var _ = require("../../node_modules/lodash/index");
 
-class Meme {
+class Meme extends observable.Observable {
 	constructor() {
+		super();
 		var debouncedRefresh = _.debounce(() => {
 			this.refresh();
-		}, 50, { leading: true });
+		}, 10, { leading: true });
 
 		// Add an event listener to refresh the memeImage every time there is a change to the properties
 		this.addEventListener(observable.Observable.propertyChangeEvent, (changes) => {
@@ -27,47 +26,41 @@ class Meme {
 			debouncedRefresh();
 		});
 	}
+	destroy() {
+		this.removeEventListener(observable.Observable.propertyChangeEvent);
+	}
+	reset() {
+		this.set("topText", "");
+		this.set("bottomText", "");
+		this.set("fontSize", 50);
+		this.set("isBlackText", false);
+	}
+	setImage(image) {
+		this.set("memeImage", image);
+		this.reset();
+		this.image = image;
+		this.uniqueImageName = utilities.generateUUID() + ".png";
+	}
+	refresh() {
+		var image = imageManipulation.addText({
+			image: this.image,
+			topText: this.topText,
+			bottomText: this.bottomText,
+			fontSize: this.fontSize,
+			isBlackText: this.isBlackText
+		});
+
+		this.set("memeImage", image);
+	}
+	save() {
+		analyticsMonitor.trackFeature("CreateMeme.SaveLocally");
+		this.refresh();
+		return localStorage.saveLocally(this.uniqueImageName, this.memeImage);
+	}
+	share() {
+		analyticsMonitor.trackFeature("CreateMeme.Share");
+		socialShare.shareImage(this.memeImage);
+	}
 }
-Meme.prototype = new observable.Observable();
-
-Meme.prototype.destroy = function() {
-	this.removeEventListener(observable.Observable.propertyChangeEvent);
-}
-Meme.prototype.reset = function() {
-	this.set("topText", "");
-	this.set("bottomText", "");
-	this.set("fontSize", 50);
-	this.set("isBlackText", false);
-}
-
-Meme.prototype.setImage = function(image) {
-	this.set("memeImage", image);
-	this.reset();
-	this.image = image;
-	this.uniqueImageName = utilities.generateUUID() + ".png";
-}
-
-Meme.prototype.refresh = function () {
-	var image = imageManipulation.addText({
-		image: this.image,
-		topText: this.topText,
-		bottomText: this.bottomText,
-		fontSize: this.fontSize,
-		isBlackText: this.isBlackText
-	});
-
-	this.set("memeImage", image);
-};
-
-Meme.prototype.save = function () {
-	analyticsMonitor.trackFeature("CreateMeme.SaveLocally");
-	this.refresh();
-	return localStorage.saveLocally(this.uniqueImageName, this.memeImage);
-};
-
-Meme.prototype.share = function() {
-	analyticsMonitor.trackFeature("CreateMeme.Share");
-	socialShare.shareImage(this.memeImage);
-};
 
 module.exports = Meme;

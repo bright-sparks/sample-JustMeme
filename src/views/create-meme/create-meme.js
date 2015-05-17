@@ -18,7 +18,7 @@ exports.loaded = function(args) {
 exports.unloaded = function() {
 	meme.destroy();
 	meme = null;
-}
+};
 
 exports.navigatedTo = function() {
 	//grab the image from the navigation context.
