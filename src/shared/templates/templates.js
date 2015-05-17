@@ -32,48 +32,54 @@ function _addNewLocalTemplate(fileName, imageSource) {
 function _getMyMemes(callback) {
 	var recentMemes = [];
 
-	localStorage.getMyMemes()
-	.then(function (entities) {
-		analyticsMonitor.trackFeature("Templates.getMyMemes");
-		analyticsMonitor.trackFeatureValue("Templates.getMyMemes", entities.length);
+	localStorage
+		.getMyMemes()
+		.then(function(entities) {
+			analyticsMonitor.trackFeature("Templates.getMyMemes");
+			analyticsMonitor.trackFeatureValue("Templates.getMyMemes", entities.length);
 
-		entities.forEach(function (entity) {
-			var source = imageSource.fromFile(entity.path);
-			recentMemes.push({ source: source, fileName: entity.name, lastModified: entity.lastModified });
+			entities.forEach(function(entity) {
+				var source = imageSource.fromFile(entity.path);
+				recentMemes.push({
+					source: source,
+					fileName: entity.name,
+					lastModified: entity.lastModified
+				});
+			});
+
+			//sort to get in the order of most recent
+			recentMemes.sort(function(a, b) {
+				return b.lastModified.getTime() - a.lastModified.getTime();
+			});
+
+			recentMemes.forEach(function(meme) {
+				callback(meme.source, meme.fileName);
+			});
 		});
-
-		//sort to get in the order of most recent
-		recentMemes.sort(function (a, b) {
-			return b.lastModified.getTime() - a.lastModified.getTime();
-		});
-
-		recentMemes.forEach(function(meme) {
-			callback(meme.source, meme.fileName);
-		});
-
-	});
 }
 
 function _getTemplates(callback) {
-	localStorage.getAppTemplates()
-	.then(function(entities){
-		//Load the app templates
-		entities.forEach(function (template) {
-			callback(imageSource.fromFile(template.path));
+	// Load all the templates stored within the app itself
+	localStorage
+		.getAppTemplates()
+		.then(function(entities) {
+			entities.forEach(function(template) {
+				callback(imageSource.fromFile(template.path));
+			});
 		});
-	});
 
-	localStorage.getMyTemplates()
-	.then(function(entities){
-		analyticsMonitor.trackFeature("Templates.getMyTemplates");
-		analyticsMonitor.trackFeatureValue("Templates.getMyTemplates", entities.length);
-
-		//Load the app templates
-		entities.forEach(function (template) {
-			callback(imageSource.fromFile(template.path));
+	// Load each user-created template stored in local storage
+	localStorage
+		.getMyTemplates()
+		.then(function(entities) {
+			analyticsMonitor.trackFeature("Templates.getMyTemplates");
+			analyticsMonitor.trackFeatureValue("Templates.getMyTemplates", entities.length);
+			entities.forEach(function(template) {
+				callback(imageSource.fromFile(template.path));
+			});
 		});
-	});
 
+	// Load all templates stored on the backend
 	_getTemplatesFromEverlive(callback);
 }
 
@@ -106,7 +112,7 @@ function _getTemplatesFromEverlive(callback) {
 					callback(templateImage);
 				}
 			});
-		}).catch(function(error){
+		}).catch(function(error) {
 			analyticsMonitor.trackException(error, "Get Templates From Everlive Failed");
 			console.log("***** ERROR", JSON.stringify(error));
 		});
