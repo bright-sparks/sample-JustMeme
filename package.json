@@ -18,6 +18,7 @@
     "gulp-jscs": "^1.6.0",
     "gulp-jshint": "^1.10.0",
     "gulp-rm": "^1.0.0",
-    "gulp-watch": "^4.2.4"
+    "gulp-watch": "^4.2.4",
+    "run-sequence": "^1.1.0"
   }
 }
