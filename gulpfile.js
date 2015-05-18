@@ -3,7 +3,6 @@ var gulp = require("gulp");
 var babel = require("gulp-babel");
 var jscs = require("gulp-jscs");
 var jshint = require("gulp-jshint");
-var runSequence = require("run-sequence");
 var watch = require("gulp-watch");
 
 var jsFiles = ["src/shared/**/*.js", "src/views/**/*.js"];
