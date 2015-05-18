@@ -56,9 +56,16 @@ exports.createNewTemplate = function() {
 function populateTemplates() {
 	//Get our parent element such that we can add our items to it dynamically
 	var container = _page.getViewById("templateContainer");
+
+	//If we've already loaded templates and no new ones are available there's no
+	//need to rebuild the list.
+	if (container.getChildrenCount() > 0 && !templates.areNewTemplatesAvailable()) {
+		return;
+	}
+
 	clearOldMemes(container);
 
-	templates.getTemplates(function(imageSource){
+	templates.getTemplates(function(imageSource) {
 		var image = new imageModule.Image();
 		image.imageSource = imageSource;
 
@@ -76,7 +83,7 @@ function populateMyMemes() {
 	var container = _page.getViewById("myMemeContainer");
 	clearOldMemes(container);
 
-	templates.getMyMemes(function(imageSource, fileName){
+	templates.getMyMemes(function(imageSource, fileName) {
 		//Create a new image element
 		var image = new imageModule.Image();
 		image.imageSource = imageSource;
@@ -99,7 +106,7 @@ function myMemesActionSheet(imageSource, imageFileName) {
 		actions: ["Delete", "Delete All", "Share"]
 	};
 
-	dialogsModule.action(options).then(function (result) {
+	dialogsModule.action(options).then(function(result) {
 		switch (result) {
 			case "Delete" :
 				analyticsMonitor.trackFeature("Home.ActionSheet.Delete");
@@ -154,7 +161,6 @@ function deleteAllMemes() {
 }
 
 function clearOldMemes(container) {
-
 	for (var i = container.getChildrenCount() - 1; i >= 0; i-- ) {
 		var childItem = container.getChildAt(i);
 

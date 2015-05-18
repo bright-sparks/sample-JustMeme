@@ -5,18 +5,26 @@ var everlive = require("../everlive/everlive");
 var localStorage = require("../local-storage/local-storage");
 var analyticsMonitor = require("../analytics");
 
+var newTemplatesAvailable = false;
+
 module.exports = {
 	getMyMemes: function(callback) {
 		return _getMyMemes(callback);
 	},
 	getTemplates: function(callback) {
+		newTemplatesAvailable = false;
 		return _getTemplates(callback);
 	},
 	addNewPublicTemplate: function(fileName, imageSource) {
+		newTemplatesAvailable = true;
 		return _addNewPublicTemplate(fileName, imageSource);
 	},
 	addNewLocalTemplate: function(fileName, imageSource) {
+		newTemplatesAvailable = true;
 		return _addNewLocalTemplate(fileName, imageSource);
+	},
+	areNewTemplatesAvailable: function() {
+		return newTemplatesAvailable;
 	}
 };
 
