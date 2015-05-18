@@ -16,7 +16,7 @@ exports.loaded = function(args) {
 
 	var webView = _page.getViewById("releaseNotesView");
 
-	var releaseNotesFolder = "./components/releases/versionInfo";
+	var releaseNotesFolder = "./views/releases/versionInfo";
 	var fullPath = fs.path.join(fs.knownFolders.currentApp().path, releaseNotesFolder);
 
 	var releaseFolder = fs.Folder.fromPath(fullPath);
