@@ -21,10 +21,9 @@ $ tns platform add ios
 $ tns platform add android
 ```
 
-JustMeme uses Babel to transpile the ES6-written source into ES5 that can run on JavaScriptCore and V8 in NativeScript. To setup a Gulp watcher to transpile your code, switch to the `src` directory and install the necessary dependencies from npm:
+JustMeme uses Babel to transpile the ES6-written source into ES5 that can run on JavaScriptCore and V8 in NativeScript. To setup a Gulp watcher to transpile your code start by installing the necessary dependencies from npm:
 
 ```
-$ cd src
 $ npm install
 ```
 
