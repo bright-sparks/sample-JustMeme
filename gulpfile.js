@@ -1,8 +1,8 @@
-var del = require("del");
 var gulp = require("gulp");
 var babel = require("gulp-babel");
 var jscs = require("gulp-jscs");
 var jshint = require("gulp-jshint");
+var rm = require("gulp-rm");
 var watch = require("gulp-watch");
 
 var jsFiles = ["src/shared/**/*.js", "src/views/**/*.js"];
@@ -21,23 +21,23 @@ gulp.task("jshint", function() {
 gulp.task("lint", ["jshint", "jscs"]);
 
 gulp.task("babel", function() {
-	gulp.src(jsFiles, { base: "src" })
+	return gulp.src(jsFiles, { base: "src" })
 		.pipe(babel())
 		.pipe(gulp.dest("app"));
 });
 
-// TODO: Why does this throw errors on subsequent runs?
 gulp.task("clean", function() {
-	del(["app/**/*"]);
+	return gulp.src("app/**/*", { read: false })
+		.pipe(rm());
 });
 
-gulp.task("copy", function() {
-	gulp.src(["**/*"], { base: "src" })
+gulp.task("copy", ["clean"], function() {
+	return gulp.src(["**/*"], { base: "src" })
 		.pipe(gulp.dest("app"));
 });
 
 gulp.task("watch", ["copy"], function() {
-	gulp.watch(jsFiles, ["babel"]);
+	return gulp.watch(jsFiles, ["babel"]);
 });
 
 gulp.task( "default", ["watch"]);
