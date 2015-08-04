@@ -14,11 +14,6 @@ var _uniqueImageNameForSession;
 
 exports.loaded = function(args) {
 	_page = args.object;
-
-	if (applicationModule.ios) {
-		_page.ios.title = "New Template";
-	}
-
 	_page.bindingContext = _viewData;
 
 	_uniqueImageNameForSession = utilities.generateUUID() + ".png";

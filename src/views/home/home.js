@@ -17,7 +17,6 @@ exports.load = function(args) {
 	_page = args.object;
 
 	if (applicationModule.ios) {
-		_page.ios.title = "JustMeme";
 		frameModule.topmost().ios.navBarVisibility = "auto";
 
 		var controller = frameModule.topmost().ios.controller;
