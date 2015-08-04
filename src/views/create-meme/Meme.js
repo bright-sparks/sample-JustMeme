@@ -5,8 +5,7 @@ var localStorage = require("../../shared/local-storage/local-storage");
 var utilities = require("../../shared/utilities");
 var analyticsMonitor = require("../../shared/analytics");
 
-var socialShare = require("../../node_modules/nativescript-social-share/social-share");
-var _ = require("../../node_modules/lodash/index");
+var _ = require("lodash");
 
 class Meme extends observable.Observable {
 	constructor() {

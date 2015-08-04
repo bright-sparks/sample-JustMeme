@@ -2,8 +2,8 @@ var applicationModule = require("application");
 var frameModule = require("ui/frame");
 var fs = require("file-system");
 
-var navigation = require( "../../shared/navigation");
-var marked = require( "../../node_modules/marked/marked.min");
+var navigation = require("../../shared/navigation");
+var marked = require("marked");
 
 var _page;
 

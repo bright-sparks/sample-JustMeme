@@ -1,6 +1,7 @@
 var applicationModule = require("application");
 var dialogsModule = require("ui/dialogs");
 var Meme = require("./Meme");
+var socialShare = require("nativescript-social-share");
 
 var _page;
 var meme;
@@ -42,5 +43,5 @@ exports.save = function() {
 };
 
 exports.share = function() {
-	meme.share();
+	socialShare.shareImage(meme.get("memeImage"));
 };
