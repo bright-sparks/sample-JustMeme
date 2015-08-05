@@ -19,18 +19,7 @@ $ git clone https://github.com/NativeScript/JustMeme.git
 $ cd JustMeme
 $ tns platform add ios
 $ tns platform add android
-```
-
-JustMeme uses Babel to transpile the ES6-written source into ES5 that can run on JavaScriptCore and V8 in NativeScript. To setup a Gulp watcher to transpile your code start by installing the necessary dependencies from npm:
-
-```
 $ npm install
-```
-
-Next run Gulp to start the watcher:
-
-```
-$ gulp
 ```
 
 From there you're good to run the app on your device of choice. For instance the following runs the app on an iOS emulator:
@@ -39,13 +28,9 @@ From there you're good to run the app on your device of choice. For instance the
 $ tns run ios --emulator
 ```
 
-### ES6
-
-JustMeme is written in ES6, and uses [Babel](https://babeljs.io/) to transpile the ES6 source into ES5 that can run on the JavaScript VMs NativeScript uses (JavaScriptCore and V8). For more information on learning ES6, refer to [Babel's documentation on the subject](https://babeljs.io/docs/learn-es6/).
-
 ### Linting
 
-JustMeme uses [JSHint](http://jshint.com/) and [JSCS](http://jscs.info/) for code linting. To kick off both, run `gulp lint` within the `src` directory:
+JustMeme uses [JSHint](http://jshint.com/) and [JSCS](http://jscs.info/) for code linting. To kick off both run `gulp lint`:
 
 ```
 $ gulp lint
