@@ -23,7 +23,7 @@ function Meme() {
 		// Call refresh meme, but make sure it doesn't get called more often than every 200ms
 		debouncedRefresh();
 	});
-};
+}
 
 Meme.prototype = new observable.Observable();
 
