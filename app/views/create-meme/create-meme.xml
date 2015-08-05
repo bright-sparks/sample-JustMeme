@@ -3,7 +3,11 @@
 	loaded="loaded"
 	unloaded="unloaded"
 	navigatedTo="navigatedTo">
-	
+
+	<Page.actionBar>
+		<ActionBar title="Create New"></ActionBar>
+	</Page.actionBar>
+
 	<ScrollView>
 		<StackLayout>
 			<Image imageSource="{{ memeImage }}" />

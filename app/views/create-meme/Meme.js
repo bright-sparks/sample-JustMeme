@@ -14,13 +14,13 @@ function Meme() {
 	}, 10, { leading: true });
 
 	// Add an event listener to refresh the memeImage every time there is a change to the properties
-	this.addEventListener(observable.Observable.propertyChangeEvent, (changes) => {
+	this.addEventListener(observable.Observable.propertyChangeEvent, function(changes) {
 		// skip if memeImage changes
 		if (changes.propertyName === "memeImage" || !that.image) {
 			return;
 		}
 
-		// Call refresh meme, but make sure it doesn't get called more often than every 200ms
+		// Call refresh meme, but make sure it doesn't get called more often than every 10ms
 		debouncedRefresh();
 	});
 }

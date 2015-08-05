@@ -1,4 +1,3 @@
-var applicationModule = require("application");
 var dialogsModule = require("ui/dialogs");
 var Meme = require("./Meme");
 var socialShare = require("nativescript-social-share");
@@ -10,10 +9,6 @@ exports.loaded = function(args) {
 	_page = args.object;
 	meme = new Meme();
 	_page.bindingContext = meme;
-
-	if (applicationModule.ios) {
-		_page.ios.title = "Create New";
-	}
 };
 
 exports.unloaded = function() {
