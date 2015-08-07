@@ -15,7 +15,7 @@ JustMeme is a NativeScript-built iOS and Android app for creating memes and shar
 This app was built with the [NativeScript CLI](https://github.com/NativeScript/nativescript-cli). Once you have the [CLI installed](https://github.com/NativeScript/nativescript-cli#installation), use the following commands to setup JustMeme:
 
 ```
-$ git clone https://github.com/NativeScript/JustMeme.git
+$ git clone https://github.com/NativeScript/sample-JustMeme.git
 $ cd JustMeme
 $ tns platform add ios
 $ tns platform add android
