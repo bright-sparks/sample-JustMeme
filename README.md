@@ -16,7 +16,7 @@ This app was built with the [NativeScript CLI](https://github.com/NativeScript/n
 
 ```
 $ git clone https://github.com/NativeScript/sample-JustMeme.git
-$ cd JustMeme
+$ cd sample-JustMeme
 $ tns platform add ios
 $ tns platform add android
 $ npm install
