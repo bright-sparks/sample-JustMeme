@@ -2,10 +2,10 @@
 	loaded="load"
 	cssClass="splashPage">
 
-		<GridLayout rows="*">
+	<GridLayout rows="*">
 
 		<Image src="{{ imageSource }}" stretch="aspectFill" />
-		<Label text="{{ 'v.' + appVersion }}"/>
+		<Label text="{{ 'Version ' + appVersion }}"/>
 
 	</GridLayout>
 </Page>

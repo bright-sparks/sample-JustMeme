@@ -15,8 +15,8 @@ trace.setCategories(trace.categories.concat(
     ));
 */
 
-application.mainModule = "./views/splashscreen/splashscreen";
-application.cssFile = "./app.css";
+application.mainModule = "views/splashscreen/splashscreen";
+application.cssFile = "app.css";
 
 // Application Events: https://github.com/NativeScript/docs/tree/master/ApiReference/application
 application.onLaunch = function (context) {
@@ -51,7 +51,7 @@ global.localTemplateFolderName = "localTemplates";
 global.everliveTemplateFolderName = "everliveTemplates";
 
 global.everliveApiKey = "wFQtgknUo8yPqENA";
-global.everliveBaseAddress = "http://api.everlive.com/v1/" + global.everliveApiKey;
+global.everliveBaseAddress = "https://api.everlive.com/v1/" + global.everliveApiKey;
 global.everliveFunctionBaseAddress = "https://platform.telerik.com/bs-api/v1/" + global.everliveApiKey + "/Functions";
 
 application.start();

@@ -8,8 +8,8 @@ var utils = require("utils/utils");
 var navigation = require( "../../shared/navigation");
 var templates = require( "../../shared/templates/templates");
 var localStorage = require( "../../shared/local-storage/local-storage");
-var socialShare = require("nativescript-social-share");
 var analyticsMonitor = require("../../shared/analytics");
+var socialShare = require("nativescript-social-share");
 
 var _page;
 

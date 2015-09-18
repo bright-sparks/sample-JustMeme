@@ -13,8 +13,10 @@ exports.load = function(args) {
 	_page = args.object;
 	_page.bindingContext = _viewData;
 
+	navigateHome();
+
 	//check version numbers
-	if (appSettingsModule.hasKey("currentVersion")){
+	/*if (appSettingsModule.hasKey("currentVersion")){
 		var lastVersion = appSettingsModule.getString("currentVersion");
 		if (lastVersion !== global.appVersion) {
 			navigateToReleaseNotes();
@@ -23,7 +25,7 @@ exports.load = function(args) {
 		}
 	} else {
 		navigateToReleaseNotes();
-	}
+	}*/
 };
 
 function navigateToReleaseNotes() {

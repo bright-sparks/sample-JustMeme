@@ -5,7 +5,11 @@
 	navigatedTo="navigatedTo">
 
 	<Page.actionBar>
-		<ActionBar title="Create New"></ActionBar>
+		<ActionBar title="Create New">
+			<ActionBar.actionItems>
+				<ActionItem text="Share" tap="share" ios.position="right" />
+			</ActionBar.actionItems>
+		</ActionBar>
 	</Page.actionBar>
 
 	<ScrollView>
@@ -23,7 +27,6 @@
 			</GridLayout>
 			
 			<Button text="Save" tap="save" />
-			<Button text="Share" tap="share" />
 		</StackLayout>
 	</ScrollView>
 </Page>
